@@ -2,6 +2,7 @@ package com.workintech.s112g2.fruitsproject.controller;
 
 
 import com.workintech.s112g2.fruitsproject.entity.Fruit;
+import com.workintech.s112g2.fruitsproject.exceptions.FruitException;
 import com.workintech.s112g2.fruitsproject.services.FruitService;
 import jakarta.validation.constraints.Positive;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,9 @@ public class FruitController {
     @GetMapping("/{id}")
     public Fruit getById(@Positive @PathVariable int id){
         Fruit fruit =  fruitService.find(id);
-        //todo
+        if(fruit == null){
+            throw new FruitException("Fruit with given id is not exist: " + id, HttpStatus.NOT_FOUND);
+        }
         return fruit;
     }
         @GetMapping("/desc")
