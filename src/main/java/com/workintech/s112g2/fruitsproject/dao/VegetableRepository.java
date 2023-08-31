@@ -10,12 +10,12 @@ import java.util.List;
 
 public interface VegetableRepository extends JpaRepository<Vegetable,Integer> {
 
-    @Query("SELECT v FROM vegetable v ORDER BY v.price DESC")
+    @Query("SELECT v FROM Vegetable v ORDER BY v.price desc")
     List<Vegetable> getByPriceDesc();
 
-    @Query("SELECT v FROM vegetable v ORDER BY v.price")
+    @Query("SELECT v FROM Vegetable v ORDER BY v.price asc")
     List<Vegetable> getByPriceAsc();
 
-    @Query("SELECT v FROM vegetable v WHERE v.name ilike %:name%")
+    @Query("SELECT v FROM Vegetable v WHERE v.name ilike %:name%")
     List<Vegetable> searchByName(String name);
 }

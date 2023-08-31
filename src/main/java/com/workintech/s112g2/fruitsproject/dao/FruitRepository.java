@@ -7,12 +7,12 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface FruitRepository extends JpaRepository<Fruit,Integer> {
-    @Query("SELECT f FROM fruit f ORDER BY f.price DESC")
+    @Query("SELECT f FROM Fruit f ORDER BY f.price desc")
     List<Fruit> getByPriceDesc();
 
-    @Query("SELECT f FROM fruit f ORDER BY f.price")
+    @Query("SELECT f FROM Fruit f ORDER BY f.price asc")
     List<Fruit> getByPriceAsc();
 
-    @Query("SELECT f FROM fruit f WHERE f.name ilike %:name%")
+    @Query("SELECT f FROM Fruit f WHERE f.name ilike %:name%")
     List<Fruit> searchByName(String name);
 }
